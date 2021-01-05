@@ -16,30 +16,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_order")
-public class Order implements Serializable{
-	
+public class Order implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String address;
 	private Double latitude;
 	private Double longitude;
 	private Instant moment;
 	private OrderStatus status;
 	
+	// Mapeando chaves estrangeiras ( N pra N no banco de dados )
 	@ManyToMany
 	@JoinTable(name = "tb_order_product",
 		joinColumns = @JoinColumn(name = "order_id"),
 		inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private Set <Product> products = new HashSet<>();
 	
-	public Order(){
-		
-	}
+	// usando Set pois não irá permitir repetição de um mesmo produto em só um pedido
+	private Set<Product> products = new HashSet<>();
+	
+	public Order() {}
 
-	public Order(long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
+	public Order(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
 		super();
 		this.id = id;
 		this.address = address;
@@ -49,11 +50,11 @@ public class Order implements Serializable{
 		this.status = status;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -100,8 +101,9 @@ public class Order implements Serializable{
 	public Set<Product> getProducts() {
 		return products;
 	}
+
 	
-	//metodos para comparar um pedido com o outro pelo ID
+	// Metodos utilizados para comparar um produto com o outro atraves do id
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -123,7 +125,7 @@ public class Order implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 
+	
 }
+
