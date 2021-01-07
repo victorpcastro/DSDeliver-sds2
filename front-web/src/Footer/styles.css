@@ -1,5 +1,7 @@
 .main-footer {
-    padding-bottom: 2px;
+    width: 1304px;
+    padding-left: 45px;
+    padding-bottom: 0px;
     background-color: var(--dark-color);
     font-weight: normal;
     font-size: 12px;
