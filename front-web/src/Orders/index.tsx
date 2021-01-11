@@ -23,7 +23,7 @@ const totalPrice = selectedProducts.reduce((sum, item) =>{
         fetchProducts()
         .then(Response => setProducts(Response.data))
         .catch(error =>{
-            toast.warning('Erro ao enviar pedido');
+            toast.warning('Erro ao listar produtos');
         })
     }, []);
 
